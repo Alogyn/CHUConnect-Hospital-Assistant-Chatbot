@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = [AllowAny]  # accessible à tous, peut-être filtré plus tard
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -14,3 +14,17 @@ class QuestionViewSet(viewsets.ModelViewSet):
         if lang:
             queryset = queryset.filter(language=lang)
         return queryset
+
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        query = request.GET.get('q', '')
+        qs = self.get_queryset().filter(text__icontains=query)
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def last(self, request):
+        nb = int(request.GET.get('n', 10))
+        qs = self.get_queryset().order_by('-created_at')[:nb]
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)

@@ -14,3 +14,12 @@ class ReponseViewSet(viewsets.ModelViewSet):
         if lang:
             queryset = queryset.filter(language=lang)
         return queryset
+
+    @action(detail=False, methods=['get'])
+    def by_question(self, request):
+        question_id = request.GET.get('question_id')
+        if not question_id:
+            return Response({"error": "question_id param required"}, status=400)
+        qs = self.get_queryset().filter(question__id=question_id)
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)

@@ -14,3 +14,10 @@ class ServiceViewSet(viewsets.ModelViewSet):
         if lang:
             queryset = queryset.filter(language=lang)
         return queryset
+
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        query = request.GET.get('q', '')
+        qs = self.get_queryset().filter(name__icontains=query)
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)

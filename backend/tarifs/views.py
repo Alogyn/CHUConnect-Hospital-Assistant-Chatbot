@@ -14,3 +14,12 @@ class TarifViewSet(viewsets.ModelViewSet):
         if lang:
             queryset = queryset.filter(language=lang)
         return queryset
+
+    @action(detail=False, methods=['get'])
+    def by_service(self, request):
+        service_id = request.GET.get('service_id')
+        if not service_id:
+            return Response({"error": "service_id param required"}, status=400)
+        qs = self.get_queryset().filter(service__id=service_id)
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)

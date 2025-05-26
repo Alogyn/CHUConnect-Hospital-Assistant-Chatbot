@@ -7,3 +7,10 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
     permission_classes = [AllowAny]
+
+    @action(detail=False, methods=['get'])
+    def min_note(self, request):
+        note = int(request.GET.get('note', 0))
+        qs = self.get_queryset().filter(note__gte=note)
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)
