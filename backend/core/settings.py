@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'tarifs',
     'logs',
     'feedbacks',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
