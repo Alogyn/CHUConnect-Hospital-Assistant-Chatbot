@@ -4,6 +4,7 @@ from .serializers import TarifSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from logs.utils import log_action
 
 class TarifViewSet(viewsets.ModelViewSet):
     queryset = Tarif.objects.all()
@@ -25,3 +26,27 @@ class TarifViewSet(viewsets.ModelViewSet):
         qs = self.get_queryset().filter(service__id=service_id)
         serializer = self.get_serializer(qs, many=True)
         return Response(serializer.data)
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        log_action(
+            action_type='admin_action',
+            user=self.request.user if self.request.user.is_authenticated else None,
+            details=f"Tarif créé: {instance.service.name} - {instance.price} DH"
+        )
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        log_action(
+            action_type='admin_action',
+            user=self.request.user if self.request.user.is_authenticated else None,
+            details=f"Tarif modifié: {instance.service.name} - {instance.price} DH"
+        )
+
+    def perform_destroy(self, instance):
+        log_action(
+            action_type='admin_action',
+            user=self.request.user if self.request.user.is_authenticated else None,
+            details=f"Tarif supprimé: {instance.service.name} - {instance.price} DH"
+        )
+        instance.delete()

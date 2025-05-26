@@ -1,20 +1,20 @@
 from rest_framework import viewsets
-from .models import Role
-from .serializers import RoleSerializer
+from .models import Log
+from .serializers import LogSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from users.models import CustomUser
-from users.serializers import CustomUserSerializer
 
-class RoleViewSet(viewsets.ModelViewSet):
-    queryset = Role.objects.all()
-    serializer_class = RoleSerializer
+class LogViewSet(viewsets.ModelViewSet):
+    queryset = Log.objects.all().order_by('-timestamp')
+    serializer_class = LogSerializer
     permission_classes = [IsAuthenticated]
 
-    @action(detail=True, methods=['get'])
-    def users(self, request, pk=None):
-        role = self.get_object()
-        users = CustomUser.objects.filter(role=role)
-        serializer = CustomUserSerializer(users, many=True)
+    @action(detail=False, methods=['get'])
+    def by_user(self, request):
+        username = request.GET.get('user')
+        if not username:
+            return Response({"error": "user param required"}, status=400)
+        qs = self.get_queryset().filter(user=username)
+        serializer = self.get_serializer(qs, many=True)
         return Response(serializer.data)

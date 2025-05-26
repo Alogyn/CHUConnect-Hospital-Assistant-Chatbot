@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Role
+from .models import Log
 
-class RoleSerializer(serializers.ModelSerializer):
+class LogSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Role
-        fields = ['id', 'name', 'description']
-        read_only_fields = ['id']
+        model = Log
+        fields = ['id', 'action', 'user', 'details', 'timestamp']
+        read_only_fields = ['id', 'timestamp']
