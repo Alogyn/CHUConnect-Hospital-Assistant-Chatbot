@@ -2,6 +2,8 @@ from rest_framework import viewsets
 from .models import Tarif
 from .serializers import TarifSerializer
 from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 class TarifViewSet(viewsets.ModelViewSet):
     queryset = Tarif.objects.all()
@@ -10,8 +12,8 @@ class TarifViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        lang = self.request.GET.get('lang', None)
-        if lang:
+        lang = self.request.GET.get('lang')
+        if lang in ['fr', 'ar']:
             queryset = queryset.filter(language=lang)
         return queryset
 

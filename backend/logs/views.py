@@ -2,6 +2,8 @@ from rest_framework import viewsets
 from .models import Log
 from .serializers import LogSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 class LogViewSet(viewsets.ModelViewSet):
     queryset = Log.objects.all()

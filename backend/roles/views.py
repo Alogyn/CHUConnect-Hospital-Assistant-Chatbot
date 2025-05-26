@@ -2,8 +2,10 @@ from rest_framework import viewsets
 from .models import Role
 from .serializers import RoleSerializer
 from rest_framework.permissions import IsAuthenticated
-from users.serializers import CustomUserSerializer
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from users.models import CustomUser
+from users.serializers import CustomUserSerializer
 
 class RoleViewSet(viewsets.ModelViewSet):
     queryset = Role.objects.all()
