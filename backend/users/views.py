@@ -1,5 +1,9 @@
-from .permissions import IsAdmin, IsSuperAdmin
+from rest_framework import viewsets
+from .models import CustomUser
+from .serializers import CustomUserSerializer
+from rest_framework.permissions import IsAuthenticated
 
-class SomeAdminView(APIView):
-    permission_classes = [IsAdmin]
-    # ...
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]  # Admin ou SuperAdmin conseillé
