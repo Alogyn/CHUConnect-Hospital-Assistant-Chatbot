@@ -1,0 +1,30 @@
+version: "3.1"
+
+stories:
+- story: demander orientation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_orientation
+  - action: utter_ask_orientation
+
+- story: demander tarif
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_tarif
+  - action: utter_ask_tarif
+
+- story: demander procédure
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_procedure
+  - action: utter_ask_procedure
+
+- story: saluer et quitter
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye

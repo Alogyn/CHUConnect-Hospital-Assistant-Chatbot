@@ -1,0 +1,37 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Bonjour
+    - Salut
+    - Salam
+    - Hello
+
+- intent: ask_orientation
+  examples: |
+    - Où se trouve la radiologie ?
+    - Où sont les urgences ?
+    - Comment aller au laboratoire ?
+    - Je cherche le service maternité
+
+- intent: ask_tarif
+  examples: |
+    - Quel est le tarif de la prise de sang ?
+    - Combien coûte une radio ?
+    - C'est combien une analyse d'urine ?
+    - Quels sont les prix des consultations ?
+
+- intent: ask_procedure
+  examples: |
+    - Quelles sont les démarches pour se faire admettre ?
+    - Comment payer ma facture ?
+    - Quels papiers pour une hospitalisation ?
+    - Quelle est la procédure pour un RDV ?
+
+- intent: goodbye
+  examples: |
+    - Merci
+    - Au revoir
+    - Choukran
+    - A bientôt

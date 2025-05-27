@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LanguageSelect from "./pages/LanguageSelect";
+import Home from "./pages/Home";
+import ChatbotPage from "./pages/ChatbotPage";
+import ServicesList from "./pages/ServicesList";
+import TarifsList from "./pages/TarifsList";
+import ProceduresPage from "./pages/ProceduresPage";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LanguageSelect />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/chatbot" element={<ChatbotPage />} />
+        <Route path="/services" element={<ServicesList />} />
+        <Route path="/tarifs" element={<TarifsList />} />
+        <Route path="/procedures" element={<ProceduresPage />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 

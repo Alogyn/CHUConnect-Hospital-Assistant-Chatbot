@@ -1,0 +1,22 @@
+version: "3.1"
+
+intents:
+  - greet
+  - ask_orientation
+  - ask_tarif
+  - ask_procedure
+  - goodbye
+
+responses:
+  utter_greet:
+    - text: "Bonjour, comment puis-je vous aider à l’hôpital ?"
+  utter_ask_orientation:
+    - text: "Quel service cherchez-vous ? Je peux vous indiquer la direction."
+  utter_ask_tarif:
+    - text: "Pour quel service voulez-vous connaître le tarif ?"
+  utter_ask_procedure:
+    - text: "Merci de préciser la procédure recherchée (admission, paiement, etc.)."
+  utter_goodbye:
+    - text: "Au revoir et bon rétablissement !"
+  utter_iamabot:
+    - text: "Je suis un assistant virtuel, un chatbot au service de l’hôpital. Posez-moi vos questions !"
