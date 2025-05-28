@@ -1,3 +1,5 @@
+#tarifs/admin.py
 from django.contrib import admin
+from .models import Tarif
 
-# Register your models here.
+admin.site.register(Tarif)
