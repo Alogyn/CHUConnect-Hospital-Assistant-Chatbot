@@ -1,15 +1,36 @@
 import * as React from 'react';
-import '../../app.css'
+import '../../App.css'
 import TextField from '@mui/material/TextField';
+import {Controller} from 'react-hook-form'
 
 export default function MyTextField(props) {
-    const {label} = props
+  const {label, name, control} = props
   return (
-      <TextField
-          id="outlined-basic"
+
+     <Controller
+        name = {name}
+        control = {control}
+        render = {({
+            field:{onChange, value}, 
+            fieldState : {error},
+            formState,
+        }) =>(
+
+          <TextField 
+          id="outlined-basic" 
+          onChange = {onChange}
+          value = {value}
           label= {label}
-          ariant="outlined"
+          variant="outlined" 
           className={"myForm"}
-      />
+          error = {!!error}
+          helperText = {error?.message}
+           />
+          
+        )
+      }
+     
+     />
+
   );
 }

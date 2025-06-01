@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'users',
     'services',
     'tarifs',
+    'questions',
+    'reponses',
     'knox', 
     'django_rest_passwordreset',
 ]
