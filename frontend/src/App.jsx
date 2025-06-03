@@ -49,6 +49,7 @@ function App() {
           <Route path="/kiosk/services" element={<KioskServices />} />
           <Route path="/kiosk/tarifs" element={<KioskTarifs />} />
           <Route path="/kiosk/chatbot" element={<KioskChatbot />} />
+          <Route path="/kiosk/chatbot" element={<KioskChatbot />} />
        </Routes>
       );
       }

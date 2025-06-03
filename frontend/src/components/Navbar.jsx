@@ -80,7 +80,7 @@ export default function Navbar(props) {
                 </ListItemButton>
               </ListItem>
 
-              <ListItem key={4} disablePadding>
+              <ListItem key={3} disablePadding>
                 <ListItemButton component={Link} to="/services" selected={"/services" === path}>
                   <ListItemIcon>
                     <HomeRepairServiceIcon />
@@ -89,7 +89,7 @@ export default function Navbar(props) {
                 </ListItemButton>
                 </ListItem>
 
-                <ListItem key={5} disablePadding>
+                <ListItem key={4} disablePadding>
                 <ListItemButton component={Link} to="/tarifs" selected={"/tarifs" === path}>
                     <ListItemIcon>
                       <AttachMoneyIcon />
@@ -108,7 +108,7 @@ export default function Navbar(props) {
                 </ListItem>
 
 
-              <ListItem key={3} disablePadding>
+              <ListItem key={6} disablePadding>
               <ListItemButton onClick={logoutUser}>
                   <ListItemIcon>
                         <LogoutIcon/> 
